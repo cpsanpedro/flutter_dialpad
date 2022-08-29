@@ -1,9 +1,10 @@
 library flutter_dialpad;
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_dtmf/dtmf.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 class DialPad extends StatefulWidget {
   final ValueSetter<String>? makeCall;
@@ -144,8 +145,12 @@ class _DialPadState extends State<DialPad> {
                     ? Container()
                     : Center(
                         child: DialButton(
-                          icon: widget.dialButtonIcon != null ? widget.dialButtonIcon : Icons.phone,
-                          color: widget.dialButtonColor != null ? widget.dialButtonColor! : Colors.green,
+                          icon: widget.dialButtonIcon != null
+                              ? widget.dialButtonIcon
+                              : Icons.phone,
+                          color: widget.dialButtonColor != null
+                              ? widget.dialButtonColor!
+                              : Colors.green,
                           onTap: (value) {
                             widget.makeCall!(_value);
                           },
@@ -158,7 +163,7 @@ class _DialPadState extends State<DialPad> {
                       EdgeInsets.only(right: screenSize.height * 0.03685504),
                   child: IconButton(
                     icon: Icon(
-                      Icons.backspace,
+                      Icons.close,
                       size: sizeFactor / 2,
                       color: _value.length > 0
                           ? (widget.backspaceButtonIconColor != null
@@ -264,7 +269,10 @@ class _DialButtonState extends State<DialButton>
           child: AnimatedBuilder(
               animation: _colorTween,
               builder: (context, child) => Container(
-                    color: _colorTween.value,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 1.0),
+                        color: _colorTween.value),
                     height: sizeFactor,
                     width: sizeFactor,
                     child: Center(
@@ -273,9 +281,6 @@ class _DialButtonState extends State<DialButton>
                                 ? Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
-                                      SizedBox(
-                                        height: 8,
-                                      ),
                                       Text(
                                         widget.title!,
                                         style: TextStyle(
@@ -288,7 +293,10 @@ class _DialButtonState extends State<DialButton>
                                           style: TextStyle(
                                               color: widget.textColor != null
                                                   ? widget.textColor
-                                                  : Colors.black))
+                                                  : Colors.black)),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
                                     ],
                                   )
                                 : Padding(
