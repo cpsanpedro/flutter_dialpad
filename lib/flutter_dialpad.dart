@@ -4,7 +4,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dtmf/dtmf.dart';
-import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 class DialPad extends StatefulWidget {
   final ValueSetter<String>? makeCall;
@@ -41,7 +40,7 @@ class DialPad extends StatefulWidget {
 }
 
 class _DialPadState extends State<DialPad> {
-  MaskedTextController? textEditingController;
+  TextEditingController textEditingController = TextEditingController();
   var _value = "";
   var mainTitle = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "＃"];
   var subTitle = [
@@ -61,8 +60,6 @@ class _DialPadState extends State<DialPad> {
 
   @override
   void initState() {
-    textEditingController = MaskedTextController(
-        mask: widget.outputMask != null ? widget.outputMask : '(000) 000-0000');
     super.initState();
   }
 
