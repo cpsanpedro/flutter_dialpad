@@ -268,6 +268,11 @@ class _DialButtonState extends State<DialButton>
           }
         }
       },
+      onLongPress: () {
+        if (widget.subtitle == "+" && this.widget.onTap != null) {
+          this.widget.onTap!(widget.subtitle);
+        }
+      },
       child: ClipOval(
           child: AnimatedBuilder(
               animation: _colorTween,
