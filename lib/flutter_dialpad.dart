@@ -155,10 +155,14 @@ class _DialPadState extends State<DialPad> {
                       ),
               ),
               Expanded(
+                  child: Material(
+                borderRadius: BorderRadius.circular(56.0),
+                color: Colors.transparent,
                 child: Padding(
                   padding:
                       EdgeInsets.only(right: screenSize.height * 0.03685504),
                   child: IconButton(
+                    splashColor: Colors.white60,
                     icon: Icon(
                       Icons.close,
                       size: sizeFactor / 2,
@@ -180,7 +184,7 @@ class _DialPadState extends State<DialPad> {
                           },
                   ),
                 ),
-              )
+              ))
             ],
           )
         ],
