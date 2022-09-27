@@ -10,28 +10,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
-            child:
-            DialPad(
+            child: DialPad(
                 enableDtmf: true,
                 //outputMask: "(000) 000-0000",
                 backspaceButtonIconColor: Colors.red,
                 buttonTextColor: Colors.white,
                 dialOutputTextColor: Colors.white,
-                keyPressed: (value){
+                keyPressed: (value) {
                   print('$value was pressed');
                 },
-                makeCall: (number){
+                makeCall: (number) {
                   print(number);
-                }
-            )
-        ),
+                })),
       ),
     );
   }

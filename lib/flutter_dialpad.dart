@@ -2,6 +2,7 @@ library flutter_dialpad;
 
 import 'dart:async';
 
+import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dtmf/dtmf.dart';
 
@@ -116,15 +117,20 @@ class _DialPadState extends State<DialPad> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(20),
-            child: TextFormField(
-              readOnly: true,
-              style: TextStyle(
-                  color: widget.dialOutputTextColor ?? Colors.black,
-                  fontSize: sizeFactor / 2),
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(border: InputBorder.none),
-              controller: textEditingController,
+            padding: EdgeInsets.only(
+                left: 32.0, bottom: 20.0, top: 24.0, right: 32.0),
+            child: Container(
+              height: 64.0,
+              child: AutoSizeTextField(
+                fullwidth: true,
+                readOnly: true,
+                style: TextStyle(
+                    color: widget.dialOutputTextColor ?? Colors.black,
+                    fontSize: sizeFactor / 2),
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(border: InputBorder.none),
+                controller: textEditingController,
+              ),
             ),
           ),
           ..._getDialerButtons(),
@@ -264,6 +270,11 @@ class _DialButtonState extends State<DialButton>
               });
             });
           }
+        }
+      },
+      onLongPress: () {
+        if (widget.subtitle == "+" && this.widget.onTap != null) {
+          this.widget.onTap!(widget.subtitle);
         }
       },
       child: ClipOval(

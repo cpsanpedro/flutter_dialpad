@@ -12,6 +12,7 @@ dependencies:
 
   flutter_dtmf: ^2.0.2
   flutter_masked_text2: ^0.9.1
+  auto_size_text_field: ^2.1.0
   #auto_size_text: ^2.0.2+1
 
 dev_dependencies:
