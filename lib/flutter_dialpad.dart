@@ -162,32 +162,38 @@ class _DialPadState extends State<DialPad> {
               ),
               Expanded(
                   child: Material(
-                borderRadius: BorderRadius.circular(56.0),
+                // borderRadius: BorderRadius.circular(56.0),
                 color: Colors.transparent,
-                child: Padding(
-                  padding:
-                      EdgeInsets.only(right: screenSize.height * 0.03685504),
-                  child: IconButton(
-                    splashColor: Colors.white60,
-                    icon: Icon(
-                      Icons.close,
-                      size: sizeFactor / 2,
-                      color: _value.length > 0
-                          ? (widget.backspaceButtonIconColor != null
-                              ? widget.backspaceButtonIconColor
-                              : Colors.white24)
-                          : Colors.white24,
+                child: Container(
+                  width: sizeFactor,
+                  height: sizeFactor,
+                  // color: Colors.orange,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(right: screenSize.height * 0.03685504),
+                    child: IconButton(
+                      splashColor: Colors.white60,
+                      icon: Icon(
+                        Icons.close,
+                        size: sizeFactor / 2,
+                        color: _value.length > 0
+                            ? (widget.backspaceButtonIconColor != null
+                                ? widget.backspaceButtonIconColor
+                                : Colors.white24)
+                            : Colors.white24,
+                      ),
+                      onPressed: _value.length == 0
+                          ? null
+                          : () {
+                              if (_value.length > 0) {
+                                setState(() {
+                                  _value =
+                                      _value.substring(0, _value.length - 1);
+                                  textEditingController!.text = _value;
+                                });
+                              }
+                            },
                     ),
-                    onPressed: _value.length == 0
-                        ? null
-                        : () {
-                            if (_value.length > 0) {
-                              setState(() {
-                                _value = _value.substring(0, _value.length - 1);
-                                textEditingController!.text = _value;
-                              });
-                            }
-                          },
                   ),
                 ),
               ))
