@@ -21,6 +21,7 @@ class DialPad extends StatefulWidget {
   // outputMask is the mask applied to the output text. Defaults to (000) 000-0000
   final String? outputMask;
   final bool? enableDtmf;
+  final double? sizeFactorMultiplier;
 
   DialPad(
       {this.makeCall,
@@ -34,7 +35,8 @@ class DialPad extends StatefulWidget {
       this.dialButtonIcon,
       this.dialOutputTextColor,
       this.backspaceButtonIconColor,
-      this.enableDtmf});
+      this.enableDtmf,
+      this.sizeFactorMultiplier});
 
   @override
   _DialPadState createState() => _DialPadState();
@@ -96,6 +98,7 @@ class _DialPadState extends State<DialPad> {
         color: widget.buttonColor,
         textColor: widget.buttonTextColor,
         onTap: _setText,
+        sizeFactorMultiplier: widget.sizeFactorMultiplier ?? 0.09852217,
       ));
     }
     //To Do: Fix this workaround for last row
@@ -117,8 +120,8 @@ class _DialPadState extends State<DialPad> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(
-                left: 32.0, bottom: 20.0, top: 24.0, right: 32.0),
+            padding:
+                EdgeInsets.only(left: 32.0, bottom: 0.0, top: 0.0, right: 32.0),
             child: Container(
               height: 64.0,
               child: AutoSizeTextField(
@@ -215,6 +218,7 @@ class DialButton extends StatefulWidget {
   final Color? iconColor;
   final ValueSetter<String?>? onTap;
   final bool? shouldAnimate;
+  final double sizeFactorMultiplier;
   DialButton(
       {this.key,
       this.title,
@@ -224,7 +228,8 @@ class DialButton extends StatefulWidget {
       this.icon,
       this.iconColor,
       this.shouldAnimate,
-      this.onTap});
+      this.onTap,
+      this.sizeFactorMultiplier = 0.09852217});
 
   @override
   _DialButtonState createState() => _DialButtonState();
@@ -259,7 +264,7 @@ class _DialButtonState extends State<DialButton>
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    var sizeFactor = screenSize.height * 0.09852217;
+    var sizeFactor = screenSize.height * widget.sizeFactorMultiplier;
 
     return GestureDetector(
       onTap: () {
@@ -309,6 +314,7 @@ class _DialButtonState extends State<DialButton>
                                       ),
                                       Text(widget.subtitle!,
                                           style: TextStyle(
+                                              fontSize: sizeFactor / 5,
                                               color: widget.textColor != null
                                                   ? widget.textColor
                                                   : Colors.black)),
