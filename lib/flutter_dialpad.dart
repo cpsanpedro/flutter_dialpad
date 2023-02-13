@@ -123,7 +123,7 @@ class _DialPadState extends State<DialPad> {
             padding:
                 EdgeInsets.only(left: 32.0, bottom: 0.0, top: 0.0, right: 32.0),
             child: Container(
-              height: 38.0,
+              height: 42.0,
               child: AutoSizeTextField(
                 fullwidth: true,
                 readOnly: true,
