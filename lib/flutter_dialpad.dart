@@ -174,7 +174,7 @@ class _DialPadState extends State<DialPad> {
                   height: sizeFactor,
                   // color: Colors.orange,
                   child: Padding(
-                    padding: EdgeInsets.only(right: screenSize.height * 0.1),
+                    padding: EdgeInsets.only(right: screenSize.height * 0.2),
                     child: IconButton(
                       splashColor: Colors.white60,
                       icon: Icon(
