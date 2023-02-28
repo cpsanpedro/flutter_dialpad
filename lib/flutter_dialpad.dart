@@ -84,26 +84,28 @@ class _DialPadState extends State<DialPad> {
 
     for (var i = 0; i < mainTitle.length; i++) {
       if (i % 3 == 0 && i > 0) {
-        rows.add(Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: items));
+        rows.add(
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: items));
         rows.add(SizedBox(
           height: 12,
         ));
         items = <Widget>[];
       }
 
-      items.add(DialButton(
-        title: mainTitle[i],
-        subtitle: subTitle[i],
-        color: widget.buttonColor,
-        textColor: widget.buttonTextColor,
-        onTap: _setText,
-        sizeFactorMultiplier: widget.sizeFactorMultiplier ?? 0.09852217,
+      items.add(Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: DialButton(
+          title: mainTitle[i],
+          subtitle: subTitle[i],
+          color: widget.buttonColor,
+          textColor: widget.buttonTextColor,
+          onTap: _setText,
+          sizeFactorMultiplier: widget.sizeFactorMultiplier ?? 0.09852217,
+        ),
       ));
     }
     //To Do: Fix this workaround for last row
-    rows.add(
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: items));
+    rows.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: items));
     rows.add(SizedBox(
       height: 12,
     ));
@@ -123,7 +125,7 @@ class _DialPadState extends State<DialPad> {
             padding:
                 EdgeInsets.only(left: 32.0, bottom: 0.0, top: 0.0, right: 32.0),
             child: Container(
-              height: 56.0,
+              height: 64.0,
               child: AutoSizeTextField(
                 fullwidth: true,
                 readOnly: true,
@@ -141,28 +143,28 @@ class _DialPadState extends State<DialPad> {
             height: 15,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Expanded(
                 child: Container(),
               ),
-              Expanded(
-                child: widget.hideDialButton != null && widget.hideDialButton!
-                    ? Container()
-                    : Center(
-                        child: DialButton(
-                          icon: widget.dialButtonIcon != null
-                              ? widget.dialButtonIcon
-                              : Icons.phone,
-                          color: widget.dialButtonColor != null
-                              ? widget.dialButtonColor!
-                              : Colors.green,
-                          onTap: (value) {
-                            widget.makeCall!(_value);
-                          },
-                        ),
+              widget.hideDialButton != null && widget.hideDialButton!
+                  ? Container()
+                  : Center(
+                      child: DialButton(
+                        sizeFactorMultiplier:
+                            widget.sizeFactorMultiplier ?? 0.09852217,
+                        icon: widget.dialButtonIcon != null
+                            ? widget.dialButtonIcon
+                            : Icons.phone,
+                        color: widget.dialButtonColor != null
+                            ? widget.dialButtonColor!
+                            : Colors.green,
+                        onTap: (value) {
+                          widget.makeCall!(_value);
+                        },
                       ),
-              ),
+                    ),
               Expanded(
                   child: Material(
                 // borderRadius: BorderRadius.circular(56.0),
@@ -172,8 +174,7 @@ class _DialPadState extends State<DialPad> {
                   height: sizeFactor,
                   // color: Colors.orange,
                   child: Padding(
-                    padding:
-                        EdgeInsets.only(right: screenSize.height * 0.03685504),
+                    padding: EdgeInsets.only(right: screenSize.height * 0.1),
                     child: IconButton(
                       splashColor: Colors.white60,
                       icon: Icon(
@@ -324,15 +325,11 @@ class _DialButtonState extends State<DialButton>
                                     ],
                                   )
                                 : Padding(
-                                    padding: EdgeInsets.only(
-                                        top: widget.title == "*" ? 10 : 0),
+                                    padding: EdgeInsets.only(top: 0),
                                     child: Text(
                                       widget.title!,
                                       style: TextStyle(
-                                          fontSize: widget.title == "*" &&
-                                                  widget.subtitle == null
-                                              ? screenSize.height * 0.0862069
-                                              : sizeFactor / 2,
+                                          fontSize: sizeFactor / 2,
                                           color: widget.textColor != null
                                               ? widget.textColor
                                               : Colors.black),
