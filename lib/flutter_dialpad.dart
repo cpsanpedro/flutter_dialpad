@@ -118,95 +118,93 @@ class _DialPadState extends State<DialPad> {
     var screenSize = MediaQuery.of(context).size;
     var sizeFactor = screenSize.height * 0.09852217;
 
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding:
-                EdgeInsets.only(left: 32.0, bottom: 0.0, top: 0.0, right: 32.0),
-            child: Container(
-              height: 64.0,
-              child: AutoSizeTextField(
-                fullwidth: true,
-                readOnly: true,
-                style: TextStyle(
-                    color: widget.dialOutputTextColor ?? Colors.black,
-                    fontSize: sizeFactor / 2),
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(border: InputBorder.none),
-                controller: textEditingController,
-              ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding:
+              EdgeInsets.only(left: 32.0, bottom: 0.0, top: 0.0, right: 32.0),
+          child: Container(
+            height: 64.0,
+            child: AutoSizeTextField(
+              fullwidth: true,
+              readOnly: true,
+              style: TextStyle(
+                  color: widget.dialOutputTextColor ?? Colors.black,
+                  fontSize: sizeFactor / 2),
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(border: InputBorder.none),
+              controller: textEditingController,
             ),
           ),
-          ..._getDialerButtons(),
-          SizedBox(
-            height: 15,
-          ),
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Expanded(
-                child: Container(),
-              ),
-              widget.hideDialButton != null && widget.hideDialButton!
-                  ? Container()
-                  : Center(
-                      child: DialButton(
-                        sizeFactorMultiplier:
-                            widget.sizeFactorMultiplier ?? 0.09852217,
-                        icon: widget.dialButtonIcon != null
-                            ? widget.dialButtonIcon
-                            : Icons.phone,
-                        color: widget.dialButtonColor != null
-                            ? widget.dialButtonColor!
-                            : Colors.green,
-                        iconColor: widget.dialButtonIconColor,
-                        onTap: (value) {
-                          widget.makeCall!(_value);
-                        },
-                      ),
-                    ),
-              Expanded(
-                  child: Material(
-                // borderRadius: BorderRadius.circular(56.0),
-                color: Colors.transparent,
-                child: Container(
-                  width: sizeFactor,
-                  height: sizeFactor,
-                  // color: Colors.orange,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(right: screenSize.height * 0.03685504),
-                    child: IconButton(
-                      splashColor: Colors.white60,
-                      icon: Icon(
-                        Icons.close,
-                        size: sizeFactor / 2,
-                        color: _value.length > 0
-                            ? (widget.backspaceButtonIconColor != null
-                                ? widget.backspaceButtonIconColor
-                                : Colors.white24)
-                            : Colors.white24,
-                      ),
-                      onPressed: _value.length == 0
-                          ? null
-                          : () {
-                              if (_value.length > 0) {
-                                setState(() {
-                                  _value =
-                                      _value.substring(0, _value.length - 1);
-                                  textEditingController!.text = _value;
-                                });
-                              }
-                            },
+        ),
+        ..._getDialerButtons(),
+        SizedBox(
+          height: 15,
+        ),
+        Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+              child: Container(),
+            ),
+            widget.hideDialButton != null && widget.hideDialButton!
+                ? Container()
+                : Center(
+                    child: DialButton(
+                      sizeFactorMultiplier:
+                          widget.sizeFactorMultiplier ?? 0.09852217,
+                      icon: widget.dialButtonIcon != null
+                          ? widget.dialButtonIcon
+                          : Icons.phone,
+                      color: widget.dialButtonColor != null
+                          ? widget.dialButtonColor!
+                          : Colors.green,
+                      iconColor: widget.dialButtonIconColor,
+                      onTap: (value) {
+                        widget.makeCall!(_value);
+                      },
                     ),
                   ),
+            Expanded(
+                child: Material(
+              // borderRadius: BorderRadius.circular(56.0),
+              color: Colors.transparent,
+              child: Container(
+                width: sizeFactor,
+                height: sizeFactor,
+                // color: Colors.orange,
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(right: screenSize.height * 0.03685504),
+                  child: IconButton(
+                    splashColor: Colors.white60,
+                    icon: Icon(
+                      Icons.close,
+                      size: sizeFactor / 2,
+                      color: _value.length > 0
+                          ? (widget.backspaceButtonIconColor != null
+                              ? widget.backspaceButtonIconColor
+                              : Colors.white24)
+                          : Colors.white24,
+                    ),
+                    onPressed: _value.length == 0
+                        ? null
+                        : () {
+                            if (_value.length > 0) {
+                              setState(() {
+                                _value = _value.substring(0, _value.length - 1);
+                                textEditingController!.text = _value;
+                              });
+                            }
+                          },
+                  ),
                 ),
-              ))
-            ],
-          )
-        ],
-      ),
+              ),
+            ))
+          ],
+        )
+      ],
     );
   }
 }
@@ -310,14 +308,14 @@ class _DialButtonState extends State<DialButton>
                                       Text(
                                         widget.title!,
                                         style: TextStyle(
-                                            fontSize: sizeFactor / 2,
+                                            fontSize: sizeFactor / 3,
                                             color: widget.textColor != null
                                                 ? widget.textColor
                                                 : Colors.black),
                                       ),
                                       Text(widget.subtitle!,
                                           style: TextStyle(
-                                              fontSize: sizeFactor / 5,
+                                              fontSize: sizeFactor / 7,
                                               color: widget.textColor != null
                                                   ? widget.textColor
                                                   : Colors.black)),
@@ -331,7 +329,7 @@ class _DialButtonState extends State<DialButton>
                                     child: Text(
                                       widget.title!,
                                       style: TextStyle(
-                                          fontSize: sizeFactor / 2,
+                                          fontSize: sizeFactor / 3,
                                           color: widget.textColor != null
                                               ? widget.textColor
                                               : Colors.black),
