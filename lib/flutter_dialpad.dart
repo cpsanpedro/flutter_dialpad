@@ -160,6 +160,7 @@ class _DialPadState extends State<DialPad> {
                         color: widget.dialButtonColor != null
                             ? widget.dialButtonColor!
                             : Colors.green,
+                        iconColor: widget.dialButtonIconColor,
                         onTap: (value) {
                           widget.makeCall!(_value);
                         },
