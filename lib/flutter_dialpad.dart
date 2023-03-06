@@ -106,9 +106,6 @@ class _DialPadState extends State<DialPad> {
     }
     //To Do: Fix this workaround for last row
     rows.add(Row(mainAxisAlignment: MainAxisAlignment.center, children: items));
-    rows.add(SizedBox(
-      height: 12,
-    ));
 
     return rows;
   }
